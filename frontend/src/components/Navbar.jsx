@@ -4,12 +4,15 @@ import {
   Badge,
   Box,
   InputBase,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
   styled,
 } from "@mui/material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import { Mail, Notifications } from "@mui/icons-material";
+import { useState } from "react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -43,6 +46,8 @@ const UserBox = styled(Box)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const [userMenuIsOpen, setUserMenuIsOpen] = useState(false);
+
   return (
     <AppBar>
       <StyledToolbar>
@@ -65,13 +70,34 @@ const Navbar = () => {
           <Badge badgeContent={2} color='error'>
             <Notifications />
           </Badge>
-          <Avatar sx={{ width: 30, height: 30 }} />
+          <Avatar
+            sx={{ width: 30, height: 30 }}
+            onClick={(e) => setUserMenuIsOpen(true)}
+          />
         </Icons>
-        <UserBox>
+        <UserBox onClick={(e) => setUserMenuIsOpen(true)}>
           <Avatar sx={{ width: 30, height: 30 }} />
           <Typography variant='span'>Chris</Typography>
         </UserBox>
       </StyledToolbar>
+      <Menu
+        sx={{ marginTop: "35px", marginRight: "30px" }}
+        id='positioned-menu'
+        open={userMenuIsOpen}
+        onClose={(e) => setUserMenuIsOpen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 };
