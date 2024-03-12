@@ -81,7 +81,6 @@ const Navbar = () => {
         </UserBox>
       </StyledToolbar>
       <Menu
-        sx={{ marginTop: "35px", marginRight: "30px" }}
         id='positioned-menu'
         open={userMenuIsOpen}
         onClose={(e) => setUserMenuIsOpen(false)}
